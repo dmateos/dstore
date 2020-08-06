@@ -36,6 +36,14 @@ def test_get_blob():
     assert response.json() == TEST_RESPONSE
 
 
+def test_get_auto_handle_blob():
+    response = client.post(TEST_KEY_AUTO, json=TEST_DATA)
+    response = client.get("/" + response.json()["id"])
+
+    assert response.status_code == 200
+    assert response.json() == TEST_RESPONSE
+
+
 def test_overwrite_attempt_behaviour():
     response = client.post(TEST_KEY, json=TEST_DATA)
     response = client.get(TEST_KEY)
