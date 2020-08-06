@@ -27,7 +27,6 @@ class BlobStorage:
             else:
                 self.engine.set(key, value)
                 return key
-
         except Exception:
             raise BlobException("could not get value")
 
@@ -46,8 +45,7 @@ class BlobStorage:
 
         if self.engine.exists(random):
             return self._random_key()
-        else:
-            return random
+        return random
 
 
 app = fastapi.FastAPI()

@@ -1,10 +1,9 @@
 FROM python:3.8
 
-# Set the working directory to /app
 WORKDIR /app
-COPY * /app/
+COPY requirements.txt /app/
 RUN pip install -r requirements.txt
-EXPOSE 8000
+COPY src/* /app/
 
-# Run app.py when the container launches
-CMD ["uvicorn --host=0.0.0.0 main:app"]
+EXPOSE 8080
+CMD ["/usr/local/bin/uvicorn", "--host=0.0.0.0", "--port=8080", "main:app"]
